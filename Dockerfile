@@ -12,5 +12,6 @@ RUN pacman -Sy && \
 
 USER builder
 RUN mkdir -p /home/builder/.ccache && mkdir -p /home/builder/pkg
+WORKDIR /home/builder
 VOLUME /home/builder/.ccache
 VOLUME /home/builder/pkg
