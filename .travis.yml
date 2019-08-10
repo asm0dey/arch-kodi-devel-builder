@@ -6,3 +6,7 @@ script:
   - mkdir cache
   - docker run -v cache:/home/builder/.ccache -v kodi:/home/builder/pkg -it makepkg bash -c 'cd ~/pkg && makepkg -Acs'
 
+cache:
+  directories:
+    - cache
+
