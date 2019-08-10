@@ -1,0 +1,8 @@
+language: minimal
+
+script:
+  - docker build -t makepkg .
+  - git clone https://aur.archlinux.org/kodi-devel.git kodi
+  - mkdir cache
+  - docker run -v cache:/root/.ccache -v kodi:/package makepkg bash -c 'cd makepkg && makepkg -Acs'
+
