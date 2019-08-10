@@ -3,7 +3,7 @@
 while true; do
     echo Not sleeping!
     sleep 60
-done
+done &
 
 NON_SLEEPING_PID="$!"
 
