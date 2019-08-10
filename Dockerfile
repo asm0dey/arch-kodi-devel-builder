@@ -6,4 +6,8 @@ RUN pacman -Sy && \
     ln -s /usr/bin/ccache /usr/local/bin/cc && \
     ln -s /usr/bin/ccache /usr/local/bin/c++ && \
     ln -s /usr/bin/ccache /usr/local/bin/g++ && \
-    mkdir -p /root/.ccache
+    mkdir -p /root/.ccache && \
+    useradd builder && \
+    echo 'builder ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+
+USER builder
