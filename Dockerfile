@@ -6,8 +6,10 @@ RUN pacman -Sy && \
     ln -s /usr/bin/ccache /usr/local/bin/cc && \
     ln -s /usr/bin/ccache /usr/local/bin/c++ && \
     ln -s /usr/bin/ccache /usr/local/bin/g++ && \
-    mkdir -p /root/.ccache && \
     useradd builder && \
-    echo 'builder ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers
+    echo 'builder ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers && \
+    mkdir -p /home/builder && chown builder /home/builder
 
 USER builder
+RUN mkdir -p /home/builder/.ccache && mkdir -p /home/builder/pkg
+VOLUME ['/home/builder/.ccache', '/home/builder/pkg']
