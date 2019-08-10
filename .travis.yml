@@ -4,5 +4,5 @@ script:
   - docker build -t makepkg .
   - git clone https://aur.archlinux.org/kodi-devel.git kodi
   - mkdir cache
-  - docker run -v cache:/home/builder/.ccache -v kodi:/home/builder/pkg makepkg bash -c 'cd ~/pkg && makepkg -Acs'
+  - docker run -v cache:/home/builder/.ccache -v kodi:/home/builder/pkg -it makepkg bash -c 'cd ~/pkg && makepkg -Acs'
 
