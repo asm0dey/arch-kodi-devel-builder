@@ -8,7 +8,7 @@ while true; do
     sleep 60
     echo Not sleeping!
     TIME_TO_RUN=$((TIME_TO_RUN-1))
-    test $TIME_TO_RUN -eq 0 && kill -9 $NON_SLEEPING_PID
+    test $TIME_TO_RUN -eq 0 && kill -9 $NON_SLEEPING_PID && true
 done &
 SLEEPING_PID="$!"
 
