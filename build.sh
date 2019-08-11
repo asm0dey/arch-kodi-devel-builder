@@ -7,7 +7,9 @@ while true; do
     sleep 60
     echo Not sleeping!
     TIME_TO_RUN=$((TIME_TO_RUN-1))
-    (docker ps -q | grep -v "$DOCKER" > /dev/null) &&  break
+    if (! (docker ps -q -a --no-trunc| grep "$DOCKER" > /dev/null)); then
+        break
+    fi
     test "$TIME_TO_RUN" -eq 0 && docker stop --time 3 "$DOCKER" && break
     docker logs --tail=50 "$DOCKER"
 done
