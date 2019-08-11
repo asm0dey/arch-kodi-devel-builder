@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-DOCKER="$(docker run -e "MAKEFLAGS='-j 2'" -v "$(pwd)"/cache:/home/builder/.ccache -v "$(pwd)"/kodi:/home/builder/pkg -d makepkg bash -c 'cd ~/pkg && makepkg -Acs --noconfirm')"
+DOCKER="$(docker run -v "$(pwd)"/cache:/home/builder/.ccache -v "$(pwd)"/kodi:/home/builder/pkg -d makepkg bash -c 'cd ~/pkg && makepkg -Acs --noconfirm')"
 
 TIME_TO_RUN=41
 while true; do
