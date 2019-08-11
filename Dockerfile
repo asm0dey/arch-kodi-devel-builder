@@ -2,10 +2,6 @@ FROM archlinux/base
 
 RUN pacman -Sy && \
     pacman -S --noconfirm base-devel git ccache && \
-    ln -s /usr/bin/ccache /usr/local/bin/gcc && \
-    ln -s /usr/bin/ccache /usr/local/bin/cc && \
-    ln -s /usr/bin/ccache /usr/local/bin/c++ && \
-    ln -s /usr/bin/ccache /usr/local/bin/g++ && \
     useradd builder && \
     echo 'builder ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers && \
     mkdir -p /home/builder && chown builder /home/builder
