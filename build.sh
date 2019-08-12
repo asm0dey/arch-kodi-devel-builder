@@ -11,7 +11,7 @@ while test "$TIME_TO_RUN" -gt 0; do
         break
     fi
     docker logs --tail=50 "$DOCKER"
-    (docker logs --tail=1 "$DOCKER" | grep 'Cleaning up.') &&  docker stop --time 1 "$DOCKER" && break
+    (docker logs --tail=1 "$DOCKER" | grep 'Cleaning up...' > /dev/null ) &&  docker stop --time 1 "$DOCKER" && break
 done
 
 if (docker ps -q -a --no-trunc| grep "$DOCKER" > /dev/null); then
