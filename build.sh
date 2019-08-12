@@ -11,9 +11,12 @@ while test "$TIME_TO_RUN" -gt 0; do
         break
     fi
     docker logs --tail=50 "$DOCKER"
+    if "$(docker logs --tail=1 "$DOCKER" | grep 'Cleaning up.')"; then
+        docker stop --time 3 "$DOCKER"
+    fi
 done
 
 if (docker ps -q -a --no-trunc| grep "$DOCKER" > /dev/null); then
     docker stop --time 3 "$DOCKER"
 fi
-test "$(find "$(pwd)"/kodi -name '*.tar.xz' | wc -l)" -eq 0  || exit 0
+(test "$(find "$(pwd)"/kodi -name '*.tar.xz' | wc -l)" -eq 0  && exit 1 )|| exit 0
