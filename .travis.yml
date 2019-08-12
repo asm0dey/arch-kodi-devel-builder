@@ -19,5 +19,5 @@ deploy:
   file: kodi/*.tar.xz
   file_glob: true
   on:
-    repo: asm0dey/arch-kodi-devel-builder
+    tags: true
   skip_cleanup: true
