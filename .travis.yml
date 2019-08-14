@@ -6,18 +6,32 @@ script:
 - sudo chown -R 1000 kodi
 - sudo chown -R 1000 cache
 - chmod +x build.sh
-- ./build.sh
+- "./build.sh"
 - sudo chown -R "$(whoami)" cache
-
+- sudo chown -R "$(whoami)" kodi
+- find kodi -not -name '*.tar.xz' -type f -delete
 cache:
   directories:
   - cache
 deploy:
-  provider: releases
-  api_key:
-    secure: FU3jFXI7vHVdhQPcw2BUMnRwwUGEeaz4YGf57RcNniZMR+07llXUtohCLkKfH57xoZfftChPFCftMKhcvI5WX5L90CDbhzdNbN5e2U4VGKqmb0Di2/HehXfzxi1/TbX8EVAz9edMybsM9Wx2sangVLUxlBA/AfhRAhJTvKTeRWlU23tJ6gQR+CQtO0CuStwX3OAdoZYNC3qI7mQw6jS8t1gDb4t3oNe18u0HnyeN7p7nVNuO9zGDJPxVPF4MeMALw6lvlq51NqMkBzb+X5WXfWZPFaug6yB4MGtRjARo+U3YdkNTMy2tm5MTKxQs9ZWnHXnAiz4E1jakQsBv71aJR8+eOMbtcydEWIcMpawFf/tiqvFNbhVHu9GyocsO8MhpPU1E72mowKZ8MmjqF+s7xUkU1Vb7dNiTY8gYSgEw91jKNauy7vE+y/Xgott1AzWie7srxPOqi1pq6h8aLzfogPvb7mWGVOvzXWJi7o51t5NoP93JK0np6VH3BnXg6Da+mfSVikL1p+JAS/7LvOlSyNsqHZga49RPnkYOdmRMvHIY5AubAPZ0ArPeYd3n62gJ9qJRHNrudbEQVnXncx2jYoPv6+A7YfwgWKjDpyKn+/dKGrJzZrQwZAstHjPlP8gWvLip0SpgSNZMC8+AED+MHtFXyYrQQ3kYFsFtLEBILZs=
+- provider: releases
+  api_key: 
+  secure: FU3jFXI7vHVdhQPcw2BUMnRwwUGEeaz4YGf57RcNniZMR+07llXUtohCLkKfH57xoZfftChPFCftMKhcvI5WX5L90CDbhzdNbN5e2U4VGKqmb0Di2/HehXfzxi1/TbX8EVAz9edMybsM9Wx2sangVLUxlBA/AfhRAhJTvKTeRWlU23tJ6gQR+CQtO0CuStwX3OAdoZYNC3qI7mQw6jS8t1gDb4t3oNe18u0HnyeN7p7nVNuO9zGDJPxVPF4MeMALw6lvlq51NqMkBzb+X5WXfWZPFaug6yB4MGtRjARo+U3YdkNTMy2tm5MTKxQs9ZWnHXnAiz4E1jakQsBv71aJR8+eOMbtcydEWIcMpawFf/tiqvFNbhVHu9GyocsO8MhpPU1E72mowKZ8MmjqF+s7xUkU1Vb7dNiTY8gYSgEw91jKNauy7vE+y/Xgott1AzWie7srxPOqi1pq6h8aLzfogPvb7mWGVOvzXWJi7o51t5NoP93JK0np6VH3BnXg6Da+mfSVikL1p+JAS/7LvOlSyNsqHZga49RPnkYOdmRMvHIY5AubAPZ0ArPeYd3n62gJ9qJRHNrudbEQVnXncx2jYoPv6+A7YfwgWKjDpyKn+/dKGrJzZrQwZAstHjPlP8gWvLip0SpgSNZMC8+AED+MHtFXyYrQQ3kYFsFtLEBILZs=
   file: kodi/*.tar.xz
   file_glob: true
   on:
     tags: true
   skip_cleanup: true
+- provider: pages
+  skip_cleanup: true
+  github_token: "$GITHUB_TOKEN"
+  target_branch: gh-pages
+  keep_history: false
+  deployment_file: true
+  local_dir: kodi
+  on:
+    branch: master
+    tags: true
+env:
+  GITHUB_TOKEN:
+    secure: QpksQgemIKxDPFg+gPDB9wfcs3keuOHEoJopp2mfcd0Zg7AKyOJUDUtfBWRmHgclNdhivbGX+tTL/HxPFIalYxgWvSIzjXLBfgfuqQLRsM5kQIhnT6qwZQ6nusi2/N6+dlhaBgjXqEgpW/y+L4L23lR5KuSPHzvytPF4rljsLTI5qKYTdL9F/pRDu2EXNn62sNNCXvGOipx/u0aD1ael+j3pBvuiS4sI9c4nMjUYcvHQTO7MLx9PQfm1VVWh33E1Z23ZfjyiR7t4cWPj6LRmS0jp7iTfZfp39UikPxbXhMz1auOOYcQTL9d6aEdmAea+KsXgPMi6RxjmBHnqUC8Xuxr/6uLu31L6MP7t5LadbbD8FGg/CqdVVE5Ll0psOKtw9iTkt5fA+gajMAFbL817PYzbtoOVhdtB7OmdZ4Oay1UD3uMNansTO5NzZpoVKO3EAcYnig0YFmMFGormf+JOZmA62FRpbjMZMvNMbmuw7KxL3DeHyBgu6MeP4l7r79VmseI0O3xGzWF48O5UkfgVumnGwtQhEzfntBeGUg/jgj64giP5htSLfUC8OHN5NhD2iMgt7iipBu0gx8ApXiqq0OQ38HUA/GWq+DSEpCE17UnIvRPXCRrnZA7Si6Wn252lBVx+7/r0vSp8MFo7QFRn0j8kLpJhxFUN6Rd7x/571JQ=
