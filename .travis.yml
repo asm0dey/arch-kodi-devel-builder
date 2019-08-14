@@ -11,7 +11,7 @@ script:
   - 'sudo chown -R "$(whoami)" kodi'
   - 'mkdir -p x86_64/dist'
   - 'find kodi -name ''*pkg.tar.xz'' -exec mv {} x86_64/dist/ +'
-  - 'docker run -v "$(pwd)"/dist:/home/builder/dist -i makepkg bash -c ''cd x86_64/dist && repo-add repo.db.tar.gz *.tar.xz'''
+  - 'docker run -v "$(pwd)"/x86_64/dist:/home/builder/dist -i makepkg bash -c ''cd dist && repo-add repo.db.tar.gz *.tar.xz'''
 cache:
   directories:
     - cache
