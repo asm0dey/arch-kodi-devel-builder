@@ -32,6 +32,15 @@ deploy:
     deployment_file: true
     local_dir: kodi
     on:
-      branch: master
       tags: true
+  -
+    provider: pages
+    skip_cleanup: true
+    github_token: $GITHUB_TOKEN
+    target_branch: gh-pages
+    keep_history: false
+    deployment_file: true
+    local_dir: kodi
+    on:
+      branch: master
 
