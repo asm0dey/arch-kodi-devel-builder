@@ -2,6 +2,8 @@ language: minimal
 script:
   - 'docker build -t makepkg .'
   - 'git clone https://aur.archlinux.org/kodi-devel.git kodi'
+# temporary fix for incorrect naming in package
+  - '(cd kodi && git apply ../fix-naming.patch)'
   - 'mkdir -p cache'
   - 'sudo chown -R 1000 kodi'
   - 'sudo chown -R 1000 cache'
