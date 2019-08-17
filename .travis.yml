@@ -12,7 +12,7 @@ script:
   - 'mkdir -p dist/x86_64'
   - 'find kodi -name ''*.tar.xz'' -exec mv {} dist/x86_64 \;'
   - 'sudo chown -R 1000 dist'
-  - 'docker run -v "$(pwd)"/dist/x86_64:/home/builder/dist -i makepkg bash -c ''cd dist && repo-add repo.db.tar.gz *.tar.xz'''
+  - 'docker run -v "$(pwd)"/dist/x86_64:/home/builder/dist -i makepkg bash -c ''cd dist && repo-add kodi-devel-prebuilt.db.tar.xz *.tar.xz'''
   - 'sudo chown -R "$(whoami)" dist'
 cache:
   directories:
