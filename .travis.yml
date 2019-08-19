@@ -2,6 +2,7 @@ language: minimal
 script:
   - 'docker build -t makepkg .'
   - 'git clone https://aur.archlinux.org/kodi-devel.git kodi'
+  - '(test -f 000*.patch && cd kodi && git apply ../*.patch)'
   - 'mkdir -p cache'
   - 'sudo chown -R 1000 kodi'
   - 'sudo chown -R 1000 cache'
