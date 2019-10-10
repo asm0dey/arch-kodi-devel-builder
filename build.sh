@@ -14,6 +14,8 @@ while test "$TIME_TO_RUN" -gt 0; do
 done
 
 if (docker ps -q -a --no-trunc| grep "$DOCKER" > /dev/null); then
+    echo Last Logs
+    docker logs --tail=50 "$DOCKER"
     docker stop --time 3 "$DOCKER"
 fi
 test "$(find "$(pwd)"/kodi -name '*.tar.xz' | wc -l)" -gt 6 || exit 1
