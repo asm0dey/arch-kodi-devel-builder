@@ -1,5 +1,6 @@
 #!/bin/bash -x
 
+docker run -it makepkg pacman -Ss waylandpp
 DOCKER="$(docker run -e "MAKEFLAGS=-j2" -v "$(pwd)"/cache:/home/builder/.ccache -v "$(pwd)"/kodi:/home/builder/pkg -d makepkg bash -c 'cd ~/pkg && makepkg -As --noconfirm')"
 
 TIME_TO_RUN=43
