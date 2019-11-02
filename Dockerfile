@@ -1,6 +1,6 @@
 FROM archlinux
 
-RUN pacman -Sy && \
+RUN pacman -Syyu --noconfirm && \
     pacman -S --noconfirm base-devel git ccache && \
     useradd builder && \
     echo 'builder ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers && \
