@@ -9,7 +9,7 @@ arch-kodi-devel-builder
 About
 -----
 
-This repository holds everything necessary for building `kodi-devel <https://aur.archlinux.org/pkgbase/kodi-devel/>`_ into binary packages, installable on linux.
+This repository holds everything necessary for building `kodi-devel <https://aur.archlinux.org/pkgbase/kodi-devel/>`_ into binary packages, installable on linux. 18.5pre32-1
 
 Releases
 --------
