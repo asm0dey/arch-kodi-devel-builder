@@ -12,10 +12,13 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   build:
-    - name: "git Actions"
-      uses: srt32/git-actions@v0.0.3
-      args: "git clone https://aur.archlinux.org/kodi-devel.git"
-    - name: "Arch Linux PKGBUILD builder action"
-      uses: 2m/arch-pkgbuild-builder@v1.9
-      with:
-        pkgname: kodi-devel
+    runs-on: [linux]
+    steps:
+      - name: "git Actions"
+        uses: srt32/git-actions@v0.0.3
+        with:
+          args: "git clone https://aur.archlinux.org/kodi-devel.git" 
+      - name: "Arch Linux PKGBUILD builder action"
+        uses: 2m/arch-pkgbuild-builder@v1.9
+        with:
+          pkgname: kodi-devel
