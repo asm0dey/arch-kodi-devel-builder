@@ -1,5 +1,3 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
 
 # Controls when the action will run. Triggers the workflow on push or pull request
@@ -14,10 +12,10 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   build:
-    - name: git Actions
+    - name: "git Actions"
       uses: srt32/git-actions@v0.0.3
-      args: git clone https://aur.archlinux.org/kodi-devel.git
-    - name: Arch Linux PKGBUILD builder action
+      args: "git clone https://aur.archlinux.org/kodi-devel.git"
+    - name: "Arch Linux PKGBUILD builder action"
       uses: 2m/arch-pkgbuild-builder@v1.9
       with:
-        pkgname: kodi-devel-rebuilt
+        pkgname: kodi-devel
